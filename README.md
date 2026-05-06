@@ -247,8 +247,91 @@ Top items output
 
 ![alt text](image-6.png)
 
+## Steps to run the code from Github
+# How Another User Can Run This Project from GitHub
 
-## Steps to run the code from visual studio code
+A user can run this project locally by following the steps below.
+
+Step 0: Install Docker Desktop
+
+        - Download and install Docker Desktop from the official Docker website.
+
+After installation:
+
+        - Open Docker Desktop
+
+Wait until Docker shows:
+
+        - Docker is running
+
+Step 1: Clone the GitHub Repository
+
+        
+        
+        Run  git clone https://github.com/currish/Sales-data-pipeline.git in cmd or simply go to the above link and download the zip file by clicking on code, which is the Green button. Then extract the zip file and open it using visual studio code 
+                          
+       
+
+Step 2: Navigate to the Project Folder in the terminal
+
+        - cd Sales-data-pipeline
+
+
+
+Step 3: Verify Docker Installation
+
+        - Run on terminal inside visual studio code:
+
+        - docker --version
+
+Step 4: Start PostgreSQL Container
+
+        - Run on terminal inside visual studio code:
+        - docker-compose up -d
+
+
+Step 5: Install Python Dependencies
+
+        Run:
+        - Run on terminal inside visual studio code:   
+        - pip install -r requirements.txt
+
+Step 6: Run the Pipeline
+
+        Run:
+        - Run on terminal inside visual studio code:
+        - python src/pipeline.py
+
+
+
+
+Step 7: Validate Output Tables
+
+        Run:
+
+        - Run on terminal inside visual studio code:
+
+        - docker exec -it sales_db psql -U postgres -d sales
+
+        Then execute:
+
+        - \dt
+
+        Expected tables:
+
+        sales_raw
+        daily_sales
+        monthly_sales
+        top_items
+        
+        Run inside the sales database
+        Run : select * from sales_raw;
+        Run : select * from daily_sales;
+        Run : select * from monthly_sales;
+        Run : select * from top_items;
+
+        
+## Steps to run the code from visual studio code (zip)
 
 - You need to open Docker desktop application first and keep it running
 
@@ -263,11 +346,7 @@ Top items output
         
         select * from daily_sales;
         select * from monthy_sales;
-        select * from top_items;
-
-## Steps to run the code from Github
-        
-            
+        select * from top_items;            
 
 
 
