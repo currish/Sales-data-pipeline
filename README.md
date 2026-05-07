@@ -31,6 +31,9 @@ Operations performed by the pipeline:
 
 - Github
 
+## Pipeline flow Architecture
+
+CSV Dataset -> clean.py -> load.py -> sales_raw table -> transform.sql -> daily_sales / monthly_sales / top_items
 
 ## Docker Setup
 
@@ -46,7 +49,7 @@ https://www.youtube.com/watch?v=uv9Le1THeeY to resolve this issue.
 
 Sales database is contained inside the container called sales_db inside the docker
 
-docker-compose.yml is used under the docker section in this project, which basically crerates and run a PostgresSQL container (Sales_db) that contains the database Sales. Given below is how the configuration of the Yml file looks like:-
+docker-compose.yml is used under the docker section in this project, which basically creates and run a PostgresSQL container (Sales_db) that contains the database Sales. Given below is how the configuration of the Yml file looks like:-
 
 ![alt text](image-2.png)
 
@@ -68,7 +71,7 @@ After installation:
 
 
 - Wait until Docker shows:
-        Docker is running
+        Engine is running
 
 
 Step 1: Clone the GitHub Repository
@@ -84,15 +87,12 @@ Step 2: Navigate to the Project Folder in the terminal then type cd Sales-data-p
 
 
 
-
-
 Step 3: Verify Docker Installation
 
 Run on terminal inside visual studio code: docker --version
 
 ![alt text](image-9.png)
   
-
 
 
 Step 4: Install Python Dependencies
