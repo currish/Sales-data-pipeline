@@ -31,21 +31,6 @@ Operations performed by the pipeline:
 
 - Github
 
-## Project Structural framework
-
-SALES-DATA-PIPELINE
-|
-|---- data/---> assignment_dataset.csv
-|
-|---- docker/--> docker-compose.yml
-|
-|---- src/----> clean.py
-|         ----> load.py
-|         ----> pipeline.py
-|         ----> transform.sql
-|         ----> test_connection.py
-|
-|-- README.md 
 
 ## Docker Setup
 
@@ -68,12 +53,123 @@ docker-compose.yml is used under the docker section in this project, which basic
 
 What this configuration does is that  it creates a container called sales_db where the database created inside this container will be sales and this will be running on port 5432. The volume configuration ensures that PostGresql table remains available even after restarting the docker container
 
+# Steps to run the code from Github
+## How Another User Can Run This Project from GitHub
+
+A user can run this project locally by following the steps below.
+
+Step 0: Install Docker Desktop
+
+- Download and install Docker Desktop from the official Docker website: https://www.docker.com/products/docker-desktop/ 
+
+After installation:
+
+- Open Docker Desktop. If it is not opening, then please refer to this youtube link https://www.youtube.com/watch?v=uv9Le1THeeY to resolve this issue.
+
+
+- Wait until Docker shows:
+        Docker is running
+
+
+Step 1: Clone the GitHub Repository
+
+Run  git clone https://github.com/currish/Sales-data-pipeline.git in cmd or simply go to the above link and download the zip file by clicking on code, which is the Green button. Then extract the zip file and open it using visual studio code 
+                          
+![alt text](image-7.png)
+
+
+Step 2: Navigate to the Project Folder in the terminal then type cd Sales-data-pipeline-main. The output should look like this in the terminal:-
+
+![alt text](image-8.png)
+
+
+
+
+
+Step 3: Verify Docker Installation
+
+Run on terminal inside visual studio code: docker --version
+
+![alt text](image-9.png)
+  
+
+
+
+Step 4: Install Python Dependencies
+
+Run on terminal inside visual studio code:  pip install -r requirements.txt
+
+![alt text](image-10.png)
+
+Step 5: Run the container inside the docker
+
+Go inside docker using cd docker from the present path and run docker-compose up -d to start the container sales_db inside the docker
+
+![alt text](image-13.png)
+
+Step 6:  Run the Pipeline.py
+
+Do cd.. to return to the previous path (Sales-data-pipeline-main path) and run inside terminal python src/pipeline.py
+
+![alt text](image-11.png)
+
+
+Step 7: Validate Output Tables
+
+- Make sure you are in the Sales-data-pipeline-main path. Run on terminal inside visual studio code from Sales-data-pipeline-main path :docker ps
+
+![alt text](image-12.png)
+
+- Then run docker exec -it sales_db psql -U postgres -d sales from the same path
+
+![alt text](image-22.png)
+
+- You will be present inside the database called as sales as shown below
+
+![alt text](image-15.png)
+
+- Then enter \dt to see the Expected tables: sales_raw ,daily_sales, monthly_sales and top_items
+
+![alt text](image-16.png)
+        
+- Then Run inside the sales database
+
+  Run : select * from sales_raw;
+
+![alt text](image-18.png)
+
+  Run : select * from daily_sales;
+
+![alt text](image-19.png)  
+
+  Run : select * from monthly_sales;
+
+![alt text](image-20.png)  
+
+  Run : select * from top_items;
+
+![alt text](image-21.png)  
+
+- As you can see, we can see the analytical datasets in the output, which means pipelining process has been done successfully !
+
+
 ## test_connection.py
 
 I just created a test_connection.py to basically validate that PostgreSQL is connected with the python code before running the pipeline properly. 
 The code is as shown below:-
 
-![alt text](image-1.png)
+                from sqlalchemy import create_engine
+
+                engine = create_engine("postgresql://postgres:postgres@localhost:5432/sales")
+
+                try:
+                        conn = engine.connect()
+                        print("Connection successful!")
+                        conn.close()
+
+                except Exception as e:
+                        print("Connection Failed:", e)
+
 
 
 I ran it and here it is showing the output
@@ -247,106 +343,7 @@ Top items output
 
 ![alt text](image-6.png)
 
-## Steps to run the code from Github
-# How Another User Can Run This Project from GitHub
 
-A user can run this project locally by following the steps below.
-
-Step 0: Install Docker Desktop
-
-        - Download and install Docker Desktop from the official Docker website.
-
-After installation:
-
-        - Open Docker Desktop
-
-Wait until Docker shows:
-
-        - Docker is running
-
-Step 1: Clone the GitHub Repository
-
-        
-        
-        Run  git clone https://github.com/currish/Sales-data-pipeline.git in cmd or simply go to the above link and download the zip file by clicking on code, which is the Green button. Then extract the zip file and open it using visual studio code 
-                          
-       
-
-Step 2: Navigate to the Project Folder in the terminal
-
-        - cd Sales-data-pipeline
-
-
-
-Step 3: Verify Docker Installation
-
-        - Run on terminal inside visual studio code:
-
-        - docker --version
-
-Step 4: Start PostgreSQL Container
-
-        - Run on terminal inside visual studio code:
-        - docker-compose up -d
-
-
-Step 5: Install Python Dependencies
-
-        Run:
-        - Run on terminal inside visual studio code:   
-        - pip install -r requirements.txt
-
-Step 6: Run the Pipeline
-
-        Run:
-        - Run on terminal inside visual studio code:
-        - python src/pipeline.py
-
-
-
-
-Step 7: Validate Output Tables
-
-        Run:
-
-        - Run on terminal inside visual studio code:
-
-        - docker exec -it sales_db psql -U postgres -d sales
-
-        Then execute:
-
-        - \dt
-
-        Expected tables:
-
-        sales_raw
-        daily_sales
-        monthly_sales
-        top_items
-        
-        Run inside the sales database
-        Run : select * from sales_raw;
-        Run : select * from daily_sales;
-        Run : select * from monthly_sales;
-        Run : select * from top_items;
-
-        
-## Steps to run the code from visual studio code (zip)
-
-- You need to open Docker desktop application first and keep it running
-
-- You need to  go  the path of sales-data-pipeline(C:\Users\subir\OneDrive\Desktop\sales-data-pipeline) and type python src/pipeline.py
-
--  After running this, the three analytical datasets would have been loaded in sales database in Docker. To view Docker you need to enter two commands one at a time
-
-        Run this first:- docker ps
-        Then this :- docker exec -it sales_db psql -U postgres -d sales
-
-- You would then enter the sales database and you can query these three statements to view these three analytical datasets:-
-        
-        select * from daily_sales;
-        select * from monthy_sales;
-        select * from top_items;            
 
 
 
