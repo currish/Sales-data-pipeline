@@ -109,30 +109,30 @@ Go inside docker using **cd docker** from the present path and run **docker-comp
 
 Step 6:  Run the Pipeline.py
 
-Do cd.. to return to the previous path (Sales-data-pipeline-main path) and run inside terminal **python src/pipeline.py**
+Do **cd..** to return to the previous path (Sales-data-pipeline-main path) and run inside terminal **python src/pipeline.py**
 
 ![alt text](image-11.png)
 
 
 Step 7: Validate Output Tables
 
-- Make sure you are in the Sales-data-pipeline-main path. Run on terminal inside visual studio code from Sales-data-pipeline-main path :**docker ps**
+Make sure you are in the Sales-data-pipeline-main path. Run on terminal inside visual studio code from Sales-data-pipeline-main path :**docker ps**
 
 ![alt text](image-12.png)
 
-- Then run **docker exec -it sales_db psql -U postgres -d sales** from the same path
+Then run **docker exec -it sales_db psql -U postgres -d sales** from the same path
 
 ![alt text](image-22.png)
 
-- You will be present inside the database called as sales as shown below
+You will be present inside the database called as sales as shown below
 
 ![alt text](image-15.png)
 
-- Then enter **\dt** to see the Expected tables: **sales_raw** ,**daily_sales**, **monthly_sales** and **top_items**
+Then enter **\dt** to see the Expected tables: **sales_raw** ,**daily_sales**, **monthly_sales** and **top_items**
 
 ![alt text](image-16.png)
         
-- Then Run inside the sales database
+Then Run inside the sales database
 
   Run : select * from sales_raw;
 
@@ -150,7 +150,7 @@ Step 7: Validate Output Tables
 
 ![alt text](image-21.png)  
 
-- As you can see, we can see the analytical datasets in the output, which means pipelining process has been done successfully !
+As you can see, we can see the analytical datasets in the output, which means pipelining process has been done successfully !
 
 
 ## test_connection.py
