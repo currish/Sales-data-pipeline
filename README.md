@@ -81,7 +81,7 @@ Run  git clone https://github.com/currish/Sales-data-pipeline.git in cmd or simp
 ![alt text](image-7.png)
 
 
-Step 2: Navigate to the Project Folder in the terminal then type cd Sales-data-pipeline-main. The output should look like this in the terminal:-
+Step 2: Navigate to the Project Folder in the terminal then type **cd Sales-data-pipeline-main**. The output should look like this in the terminal:-
 
 ![alt text](image-8.png)
 
@@ -89,7 +89,7 @@ Step 2: Navigate to the Project Folder in the terminal then type cd Sales-data-p
 
 Step 3: Verify Docker Installation
 
-Run on terminal inside visual studio code: docker --version
+Run on terminal inside visual studio code: **docker --version**
 
 ![alt text](image-9.png)
   
@@ -97,30 +97,30 @@ Run on terminal inside visual studio code: docker --version
 
 Step 4: Install Python Dependencies
 
-Run on terminal inside visual studio code:  pip install -r requirements.txt
+Run on terminal inside visual studio code:  **pip install -r requirements.txt**
 
 ![alt text](image-10.png)
 
 Step 5: Run the container inside the docker
 
-Go inside docker using cd docker from the present path and run docker-compose up -d to start the container sales_db inside the docker
+Go inside docker using cd docker from the present path and run **docker-compose up -d** to start the container sales_db inside the docker
 
 ![alt text](image-13.png)
 
 Step 6:  Run the Pipeline.py
 
-Do cd.. to return to the previous path (Sales-data-pipeline-main path) and run inside terminal python src/pipeline.py
+Do cd.. to return to the previous path (Sales-data-pipeline-main path) and run inside terminal **python src/pipeline.py**
 
 ![alt text](image-11.png)
 
 
 Step 7: Validate Output Tables
 
-- Make sure you are in the Sales-data-pipeline-main path. Run on terminal inside visual studio code from Sales-data-pipeline-main path :docker ps
+- Make sure you are in the Sales-data-pipeline-main path. Run on terminal inside visual studio code from Sales-data-pipeline-main path :**docker ps**
 
 ![alt text](image-12.png)
 
-- Then run docker exec -it sales_db psql -U postgres -d sales from the same path
+- Then run **docker exec -it sales_db psql -U postgres -d sales** from the same path
 
 ![alt text](image-22.png)
 
@@ -128,7 +128,7 @@ Step 7: Validate Output Tables
 
 ![alt text](image-15.png)
 
-- Then enter \dt to see the Expected tables: sales_raw ,daily_sales, monthly_sales and top_items
+- Then enter **\dt** to see the Expected tables: **sales_raw** ,**daily_sales**, **monthly_sales** and **top_items**
 
 ![alt text](image-16.png)
         
