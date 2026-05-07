@@ -103,7 +103,7 @@ Run on terminal inside visual studio code:  **pip install -r requirements.txt**
 
 Step 5: Run the container inside the docker
 
-Go inside docker using cd docker from the present path and run **docker-compose up -d** to start the container sales_db inside the docker
+Go inside docker using **cd docker** from the present path and run **docker-compose up -d** to start the container sales_db inside the docker
 
 ![alt text](image-13.png)
 
